@@ -5,6 +5,7 @@ import { z } from "zod";
 
 export interface ISessionExtended extends Session {
   accessToken?: string;
+  user?: IUserExtended;
 }
 declare module "next-auth" {
   interface Session {
