@@ -15,14 +15,14 @@ const Brand = async () => {
       </div>
       <div className="mt-8 grid grid-cols-5 gap-4">
         {brand ? (
-          brand.map((item, idx) => (
+          brand.map(({ name, logo }, idx) => (
             <div
               key={idx}
               className="flex cursor-pointer flex-col items-center justify-center rounded-md p-4 transition hover:scale-105"
             >
               <Image
-                src={item.logo}
-                alt={item.name}
+                src={logo}
+                alt={name}
                 width={100}
                 height={100}
                 priority
