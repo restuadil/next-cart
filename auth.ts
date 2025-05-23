@@ -1,35 +1,72 @@
 import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
-import { getProfile } from "./services/auth.service";
+import { IJWTExtended, ISessionExtended, IUserExtended } from "@/types/auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { getProfile, Login } from "./services/auth.service";
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
-    Credentials({
-      async authorize(credentials) {
-        try {
-          const { accessToken } = credentials as {
-            accessToken: string;
-            refreshToken: string;
-          };
+    CredentialsProvider({
+      id: "credentials",
+      name: "credentials",
+      credentials: {
+        identifier: { label: "identifier", type: "text" },
+        password: { label: "password", type: "password" },
+      },
+      async authorize(
+        credentials: Partial<Record<"identifier" | "password", unknown>>
+      ): Promise<IUserExtended | null> {
+        const identifier =
+          typeof credentials?.identifier === "string"
+            ? credentials.identifier
+            : "";
+        const password =
+          typeof credentials?.password === "string" ? credentials.password : "";
 
-          const response = await getProfile(accessToken);
-          const user = response.data;
+        if (!identifier || !password) {
+          return null;
+        }
 
-          if (!user) {
-            return null;
-          }
+        const result = await Login({ identifier, password });
 
-          return {
-            ...user,
-            accessToken,
-          };
-        } catch (error) {
-          console.error("Authorization error:", error);
+        const accessToken = result.data.data;
+        const profile = await getProfile(accessToken);
+        const user = profile.data.data;
+
+        if (
+          accessToken &&
+          result.status === 200 &&
+          user._id &&
+          profile.status === 200
+        ) {
+          user.accessToken = accessToken;
+          return user;
+        } else {
           return null;
         }
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+
+    async session({
+      session,
+      token,
+    }: {
+      session: ISessionExtended;
+      token: IJWTExtended;
+    }) {
+      session.user = token.user;
+      session.accessToken = token.user?.accessToken;
+
+      return session;
+    },
+  },
 });
