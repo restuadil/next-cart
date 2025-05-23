@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 export default async function AuthPage({
   params,
 }: {
-  params: { authType: "login" | "register" };
+  params: Promise<{ authType: "login" | "register" }>;
 }) {
   const { authType } = await params;
   if (authType !== "login" && authType !== "register") {

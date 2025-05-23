@@ -8,7 +8,7 @@ export default async function AuthLayout({
   params,
 }: {
   children: ReactNode;
-  params: { authType: "login" | "register" };
+  params: Promise<{ authType: "login" | "register" }>;
 }) {
   const { authType } = await params;
   const isLogin = authType === "login";
