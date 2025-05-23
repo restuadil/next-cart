@@ -1,16 +1,18 @@
-// components/AuthLayout.tsx
 import { ReactNode } from "react";
 import Image from "next/image";
-import { assets } from "@/assets/assets";
 import Link from "next/link";
+import { assets } from "@/assets/assets";
 
-export const AuthLayout = ({
+export default async function AuthLayout({
   children,
-  type,
+  params,
 }: {
   children: ReactNode;
-  type: "login" | "register";
-}) => {
+  params: { authType: "login" | "register" };
+}) {
+  const { authType } = await params;
+  const isLogin = authType === "login";
+
   return (
     <div className="min-h-screen bg-slate-50 flex h-[100vh]">
       {/* Left Side - Illustration */}
@@ -23,16 +25,13 @@ export const AuthLayout = ({
             width={500}
             height={500}
             className="object-contain"
-            style={{
-              height: "auto",
-              width: "auto",
-            }}
+            style={{ width: "auto", height: "auto" }}
           />
           <h2 className="text-white text-2xl font-bold mt-8">
-            {type === "login" ? "Welcome Back!" : "Join Us Today"}
+            {isLogin ? "Welcome Back!" : "Join Us Today"}
           </h2>
           <p className="text-green-100 mt-2">
-            {type === "login"
+            {isLogin
               ? "Sign in to manage your products and inventory"
               : "Create an account to get started"}
           </p>
@@ -50,10 +49,7 @@ export const AuthLayout = ({
                 alt="NextCart Logo"
                 width={120}
                 height={40}
-                style={{
-                  height: "auto",
-                  width: "auto",
-                }}
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
           </div>
@@ -61,7 +57,7 @@ export const AuthLayout = ({
           {children}
 
           <div className="mt-6 text-center text-sm text-slate-500">
-            {type === "login" ? (
+            {isLogin ? (
               <p>
                 Don&apos;t have an account?{" "}
                 <Link
@@ -87,4 +83,4 @@ export const AuthLayout = ({
       </div>
     </div>
   );
-};
+}

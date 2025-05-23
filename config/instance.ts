@@ -24,9 +24,9 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-instance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject(error)
-);
+// instance.interceptors.response.use(
+//   (response) => response,
+//   (error) => Promise.reject(error)
+// );
 
 export default instance;

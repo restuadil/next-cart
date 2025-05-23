@@ -7,11 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeClosed, Lock, Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const LoginPage = () => {
+  const searchParams = useSearchParams();
+  const error = searchParams.get("error");
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,12 +27,9 @@ const LoginPage = () => {
   });
   const onSubmit = async (data: ILogin) => {
     setIsLoading(true);
-    const result = await signIn("credentials", {
-      ...data,
-      redirect: false,
-    });
-    console.log(result);
+
     if (result?.error) {
+      console.log(result);
       setError("identifier", {
         type: "server",
         message: result.error,
@@ -42,6 +41,9 @@ const LoginPage = () => {
   };
   return (
     <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      {error && (
+        <div className="text-red-500 mb-4">{decodeURIComponent(error)}</div>
+      )}
       <div>
         <h1 className="text-2xl font-bold text-slate-800 mb-2">
           Sign in to your account
@@ -50,7 +52,6 @@ const LoginPage = () => {
           Enter your credentials to access the dashboard
         </p>
       </div>
-
       <div className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-1">
