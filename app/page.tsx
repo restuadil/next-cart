@@ -24,7 +24,7 @@ export default async function Home() {
       <Carousel />
       {/* categories */}
       <div className="mt-8 flex flex-row items-center justify-between">
-        <ul className="flex flex-row  flex-wrap gap-4">
+        <ul className="flex flex-row flex-wrap gap-4">
           {categories.slice(0, 4).map(({ name }: ICategory, idx) => (
             <Badge key={idx} name={name} />
           ))}

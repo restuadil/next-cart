@@ -54,7 +54,7 @@ const Carousel = () => {
   const currentCarouselItem = carouselItems[carouselIndex];
 
   return (
-    <section className="rounded-lg bg-slate-50 px-16 py-8 shadow-md">
+    <section className="rounded-lg bg-slate-50 px-16 py-8">
       {/* carousel content */}
       <div
         className="flex h-[350px] flex-row justify-between gap-10 transition-opacity duration-500 ease-in-out"

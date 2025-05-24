@@ -7,4 +7,4 @@ export const authConfig = {
   },
   session: { strategy: "jwt", maxAge: 60 * 60 * 24 },
   secret: env.AUTH_SECRET,
-} as NextAuthConfig;
+} as NextAuthConfig;

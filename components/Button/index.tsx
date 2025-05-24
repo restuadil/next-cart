@@ -32,26 +32,26 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = cn(
       "inline-flex items-center justify-center rounded-md font-medium transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-      "disabled:opacity-50 disabled:pointer-events-none hover:opacity-75",
+      "hover:opacity-75 disabled:pointer-events-none disabled:opacity-50",
       fullWidth && "w-full",
       className
     );
 
     const variantStyles = cn({
       // Primary
-      "bg-green-500 text-white hover:bg-primary-700 focus-visible:ring-primary-500 shadow text-slate-50":
+      "hover:bg-primary-700 focus-visible:ring-primary-500 bg-green-500 text-slate-50 text-white shadow":
         variant === "primary",
       // Secondary
-      "bg-gray-600 text-white hover:bg-secondary-700 focus-visible:ring-secondary-500 shadow":
+      "hover:bg-secondary-700 focus-visible:ring-secondary-500 bg-gray-600 text-white shadow":
         variant === "secondary",
       // Danger
-      "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 shadow":
+      "bg-red-600 text-white shadow hover:bg-red-700 focus-visible:ring-red-500":
         variant === "danger",
       // Ghost
       "bg-transparent text-gray-800 hover:bg-gray-100 focus-visible:ring-gray-500":
         variant === "ghost",
       // Outline
-      "bg-transparent text-gray-800 border border-gray-300 hover:bg-gray-50 focus-visible:ring-gray-500":
+      "border border-gray-300 bg-transparent text-gray-800 hover:bg-gray-50 focus-visible:ring-gray-500":
         variant === "outline",
     });
 
@@ -77,7 +77,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {isLoading ? (
           <span className="flex items-center">
             <svg
-              className={cn("animate-spin mr-2", iconSize)}
+              className={cn("mr-2 animate-spin", iconSize)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

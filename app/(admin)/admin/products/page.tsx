@@ -62,9 +62,9 @@ export default function AdminPage() {
       <SideBar />
 
       {/* Main Content */}
-      <div className="flex-1 p-8 ml-64">
+      <div className="ml-64 flex-1 p-8">
         {/* Header Section */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-slate-800">
             Product Management
           </h1>
@@ -75,7 +75,7 @@ export default function AdminPage() {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
+                className="rounded-lg border border-slate-300 py-2 pl-10 pr-4 transition-all focus:border-green-500 focus:ring-2 focus:ring-green-200"
               />
             </div>
             <Button variant="primary" size="md" leftIcon={<Plus />}>
@@ -85,51 +85,51 @@ export default function AdminPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
           <table className="min-w-full divide-y divide-slate-200">
             <thead className="bg-slate-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   Product Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   Price
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   Stock
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-slate-500">
                   Status
                 </th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-slate-500">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-200">
+            <tbody className="divide-y divide-slate-200 bg-white">
               {products.map((product, index) => (
                 <tr
                   key={product.id}
                   className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">
+                  <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-slate-900">
                     {product.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                  <td className="whitespace-nowrap px-6 py-4 text-sm text-slate-500">
                     {product.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                  <td className="whitespace-nowrap px-6 py-4 text-sm text-slate-500">
                     ${product.price.toFixed(2)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                  <td className="whitespace-nowrap px-6 py-4 text-sm text-slate-500">
                     {product.stock}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="whitespace-nowrap px-6 py-4">
                     <span
-                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
                         product.status === "active"
                           ? "bg-green-100 text-green-800"
                           : "bg-red-100 text-red-800"
@@ -138,7 +138,7 @@ export default function AdminPage() {
                       {product.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                     <div className="flex justify-center space-x-2">
                       <Button variant="outline" size="sm">
                         Edit
@@ -154,7 +154,7 @@ export default function AdminPage() {
           </table>
 
           {/* Pagination */}
-          <div className="bg-white px-6 py-3 flex items-center justify-between border-t border-slate-200">
+          <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3">
             <div className="text-sm text-slate-500">
               Showing <span className="font-medium">1</span> to{" "}
               <span className="font-medium">5</span> of{" "}

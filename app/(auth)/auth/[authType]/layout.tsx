@@ -14,9 +14,9 @@ export default async function AuthLayout({
   const isLogin = authType === "login";
 
   return (
-    <div className="min-h-screen bg-slate-50 flex h-[100vh]">
+    <div className="flex h-[100vh] min-h-screen bg-slate-50">
       {/* Left Side - Illustration */}
-      <div className="hidden lg:flex w-1/2 bg-gradient-to-br from-green-500 to-green-600 items-center justify-center p-12">
+      <div className="hidden w-1/2 items-center justify-center bg-gradient-to-br from-green-500 to-green-600 p-12 lg:flex">
         <div className="max-w-md">
           <Image
             priority
@@ -27,10 +27,10 @@ export default async function AuthLayout({
             className="object-contain"
             style={{ width: "auto", height: "auto" }}
           />
-          <h2 className="text-white text-2xl font-bold mt-8">
+          <h2 className="mt-8 text-2xl font-bold text-white">
             {isLogin ? "Welcome Back!" : "Join Us Today"}
           </h2>
-          <p className="text-green-100 mt-2">
+          <p className="mt-2 text-green-100">
             {isLogin
               ? "Sign in to manage your products and inventory"
               : "Create an account to get started"}
@@ -39,9 +39,9 @@ export default async function AuthLayout({
       </div>
 
       {/* Right Side - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
-        <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-8">
-          <div className="flex justify-center mb-8">
+      <div className="flex w-full items-center justify-center p-6 lg:w-1/2">
+        <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-sm">
+          <div className="mb-8 flex justify-center">
             <Link href="/">
               <Image
                 priority
@@ -62,7 +62,7 @@ export default async function AuthLayout({
                 Don&apos;t have an account?{" "}
                 <Link
                   href="/auth/register"
-                  className="text-green-600 font-medium hover:text-green-700"
+                  className="font-medium text-green-600 hover:text-green-700"
                 >
                   Sign up
                 </Link>
@@ -72,7 +72,7 @@ export default async function AuthLayout({
                 Already have an account?{" "}
                 <Link
                   href="/auth/login"
-                  className="text-green-600 font-medium hover:text-green-700"
+                  className="font-medium text-green-600 hover:text-green-700"
                 >
                   Sign in
                 </Link>

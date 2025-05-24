@@ -15,22 +15,22 @@ export const SideBar = async () => {
   const session = await auth();
   console.log(session);
   return (
-    <div className="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 shadow-sm">
-      <div className="p-4 border-b border-slate-200">
-        <h2 className="text-xl font-bold text-green-600 text-center">
+    <div className="fixed left-0 top-0 h-full w-64 border-r border-slate-200 bg-white shadow-sm">
+      <div className="border-b border-slate-200 p-4">
+        <h2 className="text-center text-xl font-bold text-green-600">
           Admin Dashboard
         </h2>
-        <p className="text-sm text-slate-600 text-center">
+        <p className="text-center text-sm text-slate-600">
           {session?.user?.username}
         </p>
       </div>
 
-      <nav className="p-4 space-y-1">
+      <nav className="space-y-1 p-4">
         <Link
           href="/admin/dashboard"
           className={cn(
-            "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
-            "text-green-600 bg-green-50"
+            "flex items-center rounded-lg px-4 py-3 text-sm font-medium",
+            "bg-green-50 text-green-600"
           )}
         >
           <LayoutDashboard className="mr-3" />
@@ -39,7 +39,7 @@ export const SideBar = async () => {
         <Link
           href="/admin/products"
           className={cn(
-            "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
+            "flex items-center rounded-lg px-4 py-3 text-sm font-medium",
             "text-slate-600 hover:bg-slate-100"
           )}
         >
@@ -49,7 +49,7 @@ export const SideBar = async () => {
         <Link
           href="/admin/categories"
           className={cn(
-            "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
+            "flex items-center rounded-lg px-4 py-3 text-sm font-medium",
             "text-slate-600 hover:bg-slate-100"
           )}
         >
@@ -59,7 +59,7 @@ export const SideBar = async () => {
         <Link
           href="/admin/users"
           className={cn(
-            "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
+            "flex items-center rounded-lg px-4 py-3 text-sm font-medium",
             "text-slate-600 hover:bg-slate-100"
           )}
         >
@@ -69,7 +69,7 @@ export const SideBar = async () => {
         <Link
           href="/admin/settings"
           className={cn(
-            "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
+            "flex items-center rounded-lg px-4 py-3 text-sm font-medium",
             "text-slate-600 hover:bg-slate-100"
           )}
         >
@@ -78,7 +78,7 @@ export const SideBar = async () => {
         </Link>
       </nav>
 
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-200">
+      <div className="absolute bottom-0 left-0 right-0 border-t border-slate-200 p-4">
         <Button variant="ghost" className="w-full" leftIcon={<LogOut />}>
           Logout
         </Button>
