@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 
 export const useLogin = () => {
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -41,8 +40,7 @@ export const useLogin = () => {
     handleSubmit,
     errors,
     onSubmit,
-    showPassword,
-    setShowPassword,
+
     isLoading,
   };
 };

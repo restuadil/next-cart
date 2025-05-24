@@ -28,12 +28,6 @@ export const PasswordField = <T extends FieldValues>({
   error,
   register,
 }: PasswordFieldProps<T>) => {
-  const classes = cn(
-    "w-full rounded-md border p-2 pl-10",
-    error ? "border-red-500" : "border-gray-300",
-    disabled && "bg-gray-100"
-  );
-  console.log(classes);
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -63,16 +57,12 @@ export const PasswordField = <T extends FieldValues>({
 
         <Button
           type="button"
-          variant="outline"
+          variant="ghost"
           className="absolute inset-y-0 right-0 flex items-center pr-3"
           onClick={() => setShowPassword(!showPassword)}
           aria-label={showPassword ? "Hide password" : "Show password"}
         >
-          {showPassword ? (
-            <EyeClosed className="text-gray-400" size={18} />
-          ) : (
-            <Eye className="text-gray-400" size={18} />
-          )}
+          {showPassword ? <EyeClosed size={18} /> : <Eye size={18} />}
         </Button>
       </div>
 

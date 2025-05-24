@@ -1,21 +1,14 @@
 "use client";
 import { Button } from "@/components/Button";
-import { Eye, EyeClosed, Lock, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import Link from "next/link";
 import { useLogin } from "./useLogin";
 import { InputField } from "@/components/InputField";
 import { ILogin } from "@/types/auth";
+import { PasswordField } from "@/components/PasswordField";
 
 const LoginPage = () => {
-  const {
-    errors,
-    register,
-    handleSubmit,
-    onSubmit,
-    isLoading,
-    showPassword,
-    setShowPassword,
-  } = useLogin();
+  const { errors, register, handleSubmit, onSubmit, isLoading } = useLogin();
   return (
     <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -39,38 +32,14 @@ const LoginPage = () => {
           label="Email or Username"
         />
 
-        <div>
-          <label htmlFor="password" className="mb-1 block text-sm font-medium">
-            Password
-          </label>
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <Lock className="text-gray-400" />
-            </div>
-            <input
-              id="password"
-              {...register("password")}
-              type={showPassword ? "text" : "password"}
-              className={`w-full rounded-md border p-2 pl-10 ${
-                errors.password ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="••••••••"
-              disabled={isLoading}
-            />
-            <button
-              type="button"
-              className="absolute inset-y-0 right-0 flex items-center pr-3"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeClosed /> : <Eye />}
-            </button>
-          </div>
-          {errors.password && (
-            <p className="mt-1 text-sm text-red-600">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
+        <PasswordField<ILogin>
+          label="Password"
+          name="password"
+          placeholder="••••••••"
+          disabled={isLoading}
+          error={errors.password}
+          register={register}
+        />
 
         <div className="flex items-center justify-between">
           <div className="flex items-center">
