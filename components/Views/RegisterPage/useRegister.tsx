@@ -22,7 +22,7 @@ export const useRegister = () => {
   const onSubmit = async (data: IRegister) => {
     setIsLoading(true);
     const result = await Register(data);
-    if (result.success === false) {
+    if (result.status === false) {
       setError("root", {
         type: "server",
         message: result.message,

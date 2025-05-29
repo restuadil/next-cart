@@ -11,5 +11,5 @@ export interface IWebResponse<T> {
   message: string;
   pagination: IPagination;
   statusCode: number;
-  success: boolean;
+  status: boolean;
 }

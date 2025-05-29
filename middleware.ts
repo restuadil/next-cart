@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
+// TODO need to handle jwt expired
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const isAdmin = req.auth?.user?.role === "admin";
@@ -11,7 +12,6 @@ export default auth((req) => {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 
-  // Jika belum login tapi mencoba akses halaman admin
   if (!isLoggedIn && isAdminRoute) {
     return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
   }
